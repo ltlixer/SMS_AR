@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.QuestionDAO">
+	<resultMap type="Question" id="getQuestionList">
+		<result column="id" property="id" />
+		<result column="type" property="type" />
+		<result column="articleId" property="articleId" />
+		<result column="candidate" property="candidate" />
+		<result column="question" property="question" />
+		<result column="newWord" property="newWord" />
+		<result column="createPerson" property="createPerson" />
+		<result column="createTime" property="createTime" />
+		<result column="updatePerson" property="updatePerson" />
+		<result column="updateTime" property="updateTime" />
+	</resultMap>
+	<select id="getQuestionListByArticleId" parameterType="int"
+		resultMap="getQuestionList">
+		SELECT qt.* FROM sms_article_t at,sms_question_t qt WHERE
+		`at`.id=qt.articleId and qt.articleId=#{articleId}
+	</select>
+	<insert id="insertQuestion" keyProperty="id" parameterType="Question">
+		insert into
+		sms_question_t(id,type,articleId,candidate,question,newWord,createPerson,createTime)
+		values(#{id},#{type},#{articleId},#{candidate},#{question},#{newWord},#{createPerson},#{createTime})
+	</insert>
+
+</mapper>

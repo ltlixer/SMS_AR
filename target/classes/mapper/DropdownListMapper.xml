@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.DropdownListDAO">
+	<resultMap type="DropdownList" id="getList">
+		<result column="code" property="code" />
+		<result column="mean" property="mean" />
+	</resultMap>
+	<select id="getDropdownList" parameterType="String" resultMap="getList">
+		SELECT vt.`code`,vt.mean
+		FROM sms_lookup_type_t lt,sms_lookup_values_t
+		vt WHERE
+		lt.`code`=vt.typeCode and lt.`code`=#{code}
+	</select>
+	<select id="getDropdownListTwo" parameterType="String"
+		resultMap="getList">
+		select lvtt.`code`,lvtt.mean from sms_lookup_values_t
+		lvt,sms_lookup_value_two_t lvtt
+		where lvt.`code`=lvtt.typeCode and
+		lvt.code=#{searchCode}
+	</select>
+</mapper>

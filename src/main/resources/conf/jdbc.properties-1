@@ -1,0 +1,4 @@
+jdbc_driverClassName=com.mysql.jdbc.Driver
+jdbc_url=jdbc:mysql://117.25.156.167:3306/sq_gaobang?useUnicode=true&amp;characterEncoding=utf-8
+jdbc_username=sq_gaobang
+jdbc_password=011914

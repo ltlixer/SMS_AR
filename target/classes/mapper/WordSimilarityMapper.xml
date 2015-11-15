@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.WordSimilarityDAO">
+	<resultMap type="WordSimilarity" id="wordSimilarityMap">
+		<result column="id" property="id" />
+		<result column="newWord" property="newWord" />
+		<result column="matchedWord" property="matchedWord" />
+		<result column="pySimilarity" property="pySimilarity" />
+		<result column="bhSimilarity" property="bhSimilarity" />
+		<result column="bsSimilarity" property="bsSimilarity" />
+		<result column="jgSimilarity" property="jgSimilarity" />
+		<result column="score" property="score" />
+		<result column="userId" property="userId" />
+		<result column="userName" property="userName" />
+	</resultMap>
+	<insert id="insertWordSimilarity" parameterType="WordSimilarity"
+		keyProperty="id">
+		insert
+		into
+		sms_wordSimilarit_t(articleId,newWord,matchedWord,pySimilarity,bhSimilarity,bsSimilarity,jgSimilarity,score,userId)
+		values
+		(#{articleId},
+		#{newWord},
+		#{matchedWord},
+		#{pySimilarity},
+		#{bhSimilarity},
+		#{bsSimilarity},
+		#{jgSimilarity},
+		#{score},
+		#{userId}
+		)
+	</insert>
+	<select id="getWordSimilarity" resultMap="wordSimilarityMap"
+		parameterType="Map">
+		select wst.*,ut.`name` as userName from
+		sms_wordsimilarit_t
+		wst,sms_user_t ut where ut.userId=wst.userId limit
+		#{startNumber},#{perNumber}
+	</select>
+	<select id="getWordSimilarityCount" resultType="Integer"
+		parameterType="Map">
+		select count(*) from sms_wordsimilarit_t
+		wst,sms_user_t
+		ut where ut.userId=wst.userId
+	</select>
+</mapper>
