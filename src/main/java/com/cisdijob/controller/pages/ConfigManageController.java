@@ -65,6 +65,10 @@ public class ConfigManageController extends ViewController {
 		List<DropdownList> firstClassList = dropdownListService.getDropdownList(DropdownListAPI.textType);
 		mv.addObject("articleList", articleList);
 		mv.addObject("firstClassList", firstClassList);
+		mv.addObject(
+				"pagination",
+				PaginationUtil.getPaginationMap(1, 10,
+						articleService.articleAllCounts()));
 		return mv;
 	}
 	@RequestMapping(value = "/secondClass")

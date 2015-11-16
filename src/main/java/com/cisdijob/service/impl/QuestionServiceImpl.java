@@ -14,7 +14,7 @@ import com.cisdijob.service.pages.QuestionService;
 public class QuestionServiceImpl implements QuestionService{
 	@Autowired
 	private QuestionDAO questionDAO;
-	public List<Question> getQuestionListByArticleId(int articleId) {
+	public List<Question> getQuestionListByArticleId(String articleId) {
 		// TODO Auto-generated method stub
 		return questionDAO.getQuestionListByArticleId(articleId);
 	}

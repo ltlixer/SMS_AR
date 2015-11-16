@@ -1,6 +1,7 @@
 package com.cisdijob.service.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +15,7 @@ import com.cisdijob.service.pages.ArticleService;
 public class ArticleServiceImpl implements ArticleService {
 	@Autowired
 	private ArticleDAO articleDAO;
-	public Article getArticleById(int id) {
+	public Article getArticleById(String id) {
 		// TODO Auto-generated method stub
 		return articleDAO.getArticleById(id);
 	}
@@ -25,6 +26,18 @@ public class ArticleServiceImpl implements ArticleService {
 	public void insertArticle(Article article) {
 		// TODO Auto-generated method stub
 		articleDAO.insertArticle(article);
+	}
+	public int articleCount(Map<String,Object> map) {
+		// TODO Auto-generated method stub
+		return articleDAO.articleCount(map);
+	}
+	public List<Article> getArticleListByMap(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return articleDAO.getArticleListByMap(map);
+	}
+	public int articleAllCounts() {
+		// TODO Auto-generated method stub
+		return articleDAO.articleAllCounts();
 	}
 
 }

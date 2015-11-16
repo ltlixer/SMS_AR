@@ -54,12 +54,13 @@ public class FactualController extends ViewController {
 	@RequestMapping(value = "/score.html")
 	public ModelAndView scorePage() {
 		ModelAndView mv = this.createLayoutView("factual/score.html");
-		List<DropdownList> textDropdownList = dorpdownListService
-				.getDropdownList(DropdownListAPI.textDropdownCode);
-		Article article = articleService.getArticleById(1);
+		List<Article> articleList = articleService.getArticleList();
+		/*List<DropdownList> textDropdownList = dorpdownListService
+				.getDropdownList(DropdownListAPI.textDropdownCode);*/
+		Article article = articleService.getArticleById("1");
 		List<Question> questionList = questionService
-				.getQuestionListByArticleId(1);
-		mv.addObject("TEXTLIST", textDropdownList);
+				.getQuestionListByArticleId("1");
+		mv.addObject("TEXTLIST", articleList);
 		mv.addObject("article", article);
 		mv.addObject("questionList", questionList);
 		return mv;
@@ -89,14 +90,15 @@ public class FactualController extends ViewController {
 	public ModelAndView articleSelect(HttpServletRequest request,
 			@RequestBody Map<String, Object> parmas) {
 		String articleId = parmas.get("articleId").toString();
-		int id = Integer.parseInt(articleId);
+		//int id = Integer.parseInt(articleId);
 		ModelAndView mv = new ModelAndView();
 		mv.setViewName("fragment/article-fragment");
-		List<DropdownList> textDropdownList = dorpdownListService
-				.getDropdownList(DropdownListAPI.textDropdownCode);
-		Article article = articleService.getArticleById(id);
+		List<Article> articleList = articleService.getArticleList();
+		/*List<DropdownList> textDropdownList = dorpdownListService
+				.getDropdownList(DropdownListAPI.textDropdownCode);*/
+		Article article = articleService.getArticleById(articleId);
 		List<Question> questionList = questionService
-				.getQuestionListByArticleId(id);
+				.getQuestionListByArticleId(articleId);
 		List<Word> wordList = wordService.getWordList();
 
 		List<DistanceAndWord> py_distance = new ArrayList<DistanceAndWord>();
@@ -268,7 +270,7 @@ public class FactualController extends ViewController {
 			 */
 
 		}
-		mv.addObject("TEXTLIST", textDropdownList);
+		mv.addObject("TEXTLIST", articleList);
 		mv.addObject("article", article);
 		mv.addObject("questionList", questionList);
 		mv.addObject("map_word", map_word);

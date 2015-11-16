@@ -15,7 +15,7 @@
 		<result column="updatePerson" property="updatePerson" />
 		<result column="updateTime" property="updateTime" />
 	</resultMap>
-	<select id="getQuestionListByArticleId" parameterType="int"
+	<select id="getQuestionListByArticleId" parameterType="String"
 		resultMap="getQuestionList">
 		SELECT qt.* FROM sms_article_t at,sms_question_t qt WHERE
 		`at`.id=qt.articleId and qt.articleId=#{articleId}

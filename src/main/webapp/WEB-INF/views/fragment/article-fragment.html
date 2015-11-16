@@ -6,8 +6,8 @@
 				<div class="widget-toolbar">
 					<select id="articleTitle" onchange="selectArticle()">
 						<option class="alert alert-success" value="">---请选择课文---</option>
-						#foreach($TEXT in $TEXTLIST)
-						<option value='$!{TEXT.getCode()}'>$!{TEXT.getMean()}</option>
+						#foreach($atricle in $TEXTLIST)
+						<option value='$!{atricle.getId()}'>$!{atricle.getTitle()}</option>
 						#end
 					</select> <a href="#" data-action="collapse"> <i
 						class="ace-icon fa fa-chevron-up"></i>

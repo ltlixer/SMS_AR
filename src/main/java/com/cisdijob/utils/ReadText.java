@@ -92,10 +92,12 @@ public class ReadText {
 			for(int j=0;j<scentence.length;j++){
 				question = scentence[j];
 				if(question.contains(word)){
+					question = question.replaceFirst(word, "("+word+")");
 					Question que = new Question();
 					que.setQuestion(flag+"."+question+"。");
 					que.setNewWord(word);
 					questionList.add(que);
+					flag++;
 				}
 			}
 		}
