@@ -1,0 +1,78 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>修改代码页面</title>
+  <link rel="stylesheet" href="lib/codemirror.css">
+  <link rel="stylesheet" href="lib/monokai.css">
+  <link rel="stylesheet" href="css/modify.css">
+  <link rel="stylesheet" href="build/codemirror-config.css">
+</head>
+<body>
+  <div class="toolbar">
+    <div class="btn" onClick="copy()">从原框复制到新框</div>
+    <div class="btn" onClick="save()">保存</div>
+    <div class="btn" onClick="del()">删除当前版本</div>
+    <div class="btn" onClick="writeFile()">预览</div>
+
+    <!-- 选择代码版本-->
+    <select name="" id="modelList">
+      <% versions.forEach(function(version){ %>
+      <option value="<%=version %>"><%=version %></option>
+      <% }); %>
+    </select>
+
+    <!-- 添加版本-->
+    <div class="addModelName">
+      <button class="btn addModel">添加版本</button>
+      <div class="input-content">
+        <div class="title">
+          请填入新版本名
+        </div>
+        <div class="input">
+          <label >版本名：</label>
+          <input type="text" class="newModel"/>
+        </div>
+        <button class="btn cancel">取消</button>
+        <button class="btn sure">确定</button>
+
+      </div>
+    </div>
+
+    <!-- 选择所要修改的文件-->
+    <div class="fileModify">
+      <label for="fileList">可修改文件列表</label>
+      <select name="" id="fileList">
+        <% files.forEach(function(file){ %>
+        <option value="<%=file %>"><%=file %></option>
+        <% }); %>
+      </select>
+    </div>
+  </div>
+
+  <hr/>
+
+  <div class="display-file">
+    当前所操作的文件是：<span class="fileName"><%= fileName %></span>
+    <span class="notice">如果没有版本号或下框中没有代码，请刷新页面再试</span>
+  </div>
+
+  <div class="mirror originJs">
+    <p>这里是原始代码</p>
+    <textarea name="js" id="js" cols="30" rows="10"><%=code %></textarea>
+  </div>
+  <div class="mirror copuJs">
+    <p>这里是可修改的代码，请参照左侧代码进行修改</p>
+    <textarea name="copy" id="copy" cols="30" rows="10"><%=code %></textarea>
+  </div>
+
+<!--<script src="https://api.geetest.com/get.php"></script>-->
+<script src="js/jquery-1.11.2.min.js"></script>
+<!-- 引入codeMirror -->
+<script src="http://s5.qhimg.com/!dc9776e4/codemirror.js"></script>
+<script src="lib/javascript.js"></script>
+<script src="http://s2.qhimg.com/!0a5751f0/codemirror-config-min.js"></script>
+<script src="js/modify.js"></script>
+</body>
+</html>

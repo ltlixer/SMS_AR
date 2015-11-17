@@ -89,7 +89,12 @@ public class ReadText {
 		int flag = 1;
 		for(int i=0;i<array.length;i++){
 			String word = array[i];
+			int lable = 1;
 			for(int j=0;j<scentence.length;j++){
+				
+				if(lable>=2){
+					break;
+				}
 				question = scentence[j];
 				if(question.contains(word)){
 					question = question.replaceFirst(word, "("+word+")");
@@ -98,6 +103,7 @@ public class ReadText {
 					que.setNewWord(word);
 					questionList.add(que);
 					flag++;
+					lable++;
 				}
 			}
 		}

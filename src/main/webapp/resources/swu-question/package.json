@@ -1,0 +1,27 @@
+{
+  "name": "swu-question",
+  "version": "1.0.0",
+  "main": "gulpfile.js",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "browser-sync": "^2.9.8"
+  },
+  "devDependencies": {
+    "body-parser": "^1.14.1",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "gulp-concat": "^2.6.0",
+    "gulp-minify": "0.0.5",
+    "gulp-uglify": "^1.4.1",
+    "mongoose": "^4.1.11",
+    "morgan": "^1.6.1",
+    "opener": "^1.4.1",
+    "uglify": "^0.1.5"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

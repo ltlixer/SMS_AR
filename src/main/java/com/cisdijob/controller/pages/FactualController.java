@@ -50,7 +50,6 @@ public class FactualController extends ViewController {
 	private WordService wordService;
 	@Resource
 	private WordSimilarityService wordSimilarityService;
-
 	@RequestMapping(value = "/score.html")
 	public ModelAndView scorePage() {
 		ModelAndView mv = this.createLayoutView("factual/score.html");
@@ -75,7 +74,7 @@ public class FactualController extends ViewController {
 
 	@RequestMapping(value = "/text-system.html")
 	public ModelAndView textSystemPage() {
-		ModelAndView mv = this.createLayoutView("factual/folderTree.html");
+		ModelAndView mv = this.createLayoutView("factual/text-system.html");
 		return mv;
 	}
 
@@ -141,6 +140,9 @@ public class FactualController extends ViewController {
 
 			String newWord = question.getNewWord();
 			Word word = wordService.getWord(newWord);
+			
+			if(word!=null){ 
+						
 			String word_word = word.getWord();
 			String word_bh = word.getBh();
 			String word_py = word.getPy();
@@ -269,6 +271,7 @@ public class FactualController extends ViewController {
 			 * if(!temp.isEmpty()){ temp.clear(); }
 			 */
 
+			}
 		}
 		mv.addObject("TEXTLIST", articleList);
 		mv.addObject("article", article);
@@ -318,6 +321,19 @@ public class FactualController extends ViewController {
 			e.printStackTrace();
 			result.put("error", "error!");
 		}
+
+		return result;
+	}
+	@RequestMapping(value = "/submitQuestion")
+	@ResponseBody
+	public Map<String, Object> factualSubmitQuestion(HttpServletRequest request,
+			HttpServletResponse response,
+			@RequestBody Map<String, Object> params) {
+		String dataArray[] =(String[]) params.get("dataSets");
+		for(int i=0;i<dataArray.length;i++){
+			Object map=dataArray[i];
+		}
+		Map<String,Object> result = new HashMap<String, Object>();
 
 		return result;
 	}

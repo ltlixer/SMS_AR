@@ -20,14 +20,14 @@
 
 		</div>
 		<div class="col-sm-4" id="select">
-			<label class="control-label">一级类别</label> <select id="FirstClass"
+			<label class="control-label">类别</label> <select id="FirstClass"
 				onchange="FirstClassSelect()" name="FirstClass">
 				<option value="">--选择类别--</option> #foreach($dropdown in
 				$firstClassList)
 				<option value='$!{dropdown.getCode()}'>$!{dropdown.getMean()}</option>
 				#end
-			</select> <label class="control-label col-sm-offset-1">二级类别</label> <select
-				id="SecondClass" name="SecondClass"><option>--选择类别--</option>
+			</select> <label class="control-label col-sm-offset-1">年級</label> <select
+				id="SecondClass" name="SecondClass"><option>--选择年級--</option>
 				#foreach($dropdown in $secondClassList)
 				<option value='$!{dropdown.getCode()}'>$!{dropdown.getMean()}</option>
 				#end
@@ -81,7 +81,7 @@
 					<td>$!{article.getTitle()}</td>
 					<td>$!{article.getDescription()}</td>
 					<td>$!{article.getType()}</td>
-					<td>$!{article.getgrade()}</td>
+					<td>$!{article.gettype2()}</td>
 					<td>$!{article.getCreatePerson()}</td>
 					<td>$!{article.getCreateTime()}</td>
 					<td>$!{article.getUpdatePerson()}</td>
