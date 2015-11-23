@@ -103,7 +103,7 @@ public class ConfigManageController extends ViewController {
 		//解析文档
 		Map<String,Object> map = ReadText.getSelectFile(fileNamePath);
 		String content = map.get("content").toString();
-		content = content.replaceAll("<br/>", "");
+		//content = content.replaceAll("<br/>", "");
 		String array[] = (String[])map.get("word");
 		Article article = new Article();
 		article.setId(uuid);

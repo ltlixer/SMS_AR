@@ -1,0 +1,8 @@
+last.js
+mq.js
+pos.js
+srl.js
+common.js
+getComponentsBySrl.js
+questionGenerator.js
+wipeNeedlessComponent.js

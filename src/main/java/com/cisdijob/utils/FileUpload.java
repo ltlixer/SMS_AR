@@ -26,7 +26,6 @@ public class FileUpload {
 			HttpServletResponse response,String path) throws IllegalStateException,
 			IOException {
 		
-		
 		// 创建一个通用的多部分解析器
 		CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver(
 				request.getSession().getServletContext());

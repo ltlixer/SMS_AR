@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.ArticleDAO">
+	<resultMap type="Article" id="ArticleList">
+		<result column="id" property="id" />
+		<result column="title" property="title" />
+		<result column="description" property="description" />
+		<result column="type" property="type" />
+		<result column="grade" property="grade" />
+		<result column="content" property="content" />
+		<result column="createPerson" property="createPerson" />
+		<result column="createTime" property="createTime" />
+		<result column="updatePerson" property="updatePerson" />
+		<result column="updateTime" property="updateTime" />
+	</resultMap>
+	<select id="getArticleById" parameterType="String" resultType="Article">
+		select * from sms_article_t where id = #{id}
+	</select>
+	<select id="getArticleList" resultMap="ArticleList">
+		SELECT
+		`at`.id,`at`.title,at.description,vt.mean as type,vtt.mean as
+		type2,`at`.content,`at`.createPerson,`at`.createTime,`at`.updatePerson,`at`.updateTime
+		from sms_article_t at,sms_lookup_type_t tt,sms_lookup_values_t
+		vt,sms_lookup_value_two_t vtt
+		WHERE tt.`code`=vt.typeCode and
+		vt.`code`=vtt.typeCode and
+		vt.`code`=`at`.type and
+		vtt.`code`=`at`.type2
+	</select>
+	<insert id="insertArticle" parameterType="Article" keyProperty="id">
+		insert into
+		sms_article_t(id,title,description,type,type2,content,createPerson,createTime)
+		values(#{id},#{title},#{description},#{type},#{type2},#{content},#{createPerson},#{createTime})
+	</insert>
+	<select id="articleCount" resultType="Integer" parameterType="Map">
+		select count(*) from sms_article_t;
+	</select>
+	<select id="articleAllCounts" resultType="Integer">
+		select count(*) from sms_article_t;
+	</select>
+	<select id="getArticleListByMap" resultMap="ArticleList">
+		SELECT
+		`at`.id,`at`.title,at.description,vt.mean as type,vtt.mean as
+		type2,`at`.content,`at`.createPerson,`at`.createTime,`at`.updatePerson,`at`.updateTime
+		from sms_article_t at,sms_lookup_type_t tt,sms_lookup_values_t
+		vt,sms_lookup_value_two_t vtt
+		WHERE tt.`code`=vt.typeCode and
+		vt.`code`=vtt.typeCode and
+		vt.`code`=`at`.type and
+		vtt.`code`=`at`.type2
+	</select>
+</mapper>

@@ -22,7 +22,7 @@ import com.cisdijob.utils.DropdownListAPI;
 import com.cisdijob.utils.WordExcel;
 
 public class TestMyBatis {
-	private DropdownListService dorpdownListService;
+	/*private DropdownListService dorpdownListService;
 	private WordService wordService;
 	@Before
 	public void before() {
@@ -41,12 +41,12 @@ public class TestMyBatis {
 				.getDropdownList(DropdownListAPI.textDropdownCode);
 	}
 
-	/**
+	*//**
 	 * 
 	 * @param args
 	 *            生字表的导入
 	 * @throws IOException
-	 */
+	 *//*
 	@Test
 	public  void insertWrod() {
 		String file = "F:\\创新基金\\wordTest.xls";
@@ -57,7 +57,7 @@ public class TestMyBatis {
 			wordService.insertWord(word);
 		}
 	}
-
+*/
 	
 
 }

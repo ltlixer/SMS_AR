@@ -1,0 +1,28 @@
+ #foreach($article in $articleList)
+<tr>
+	<td>$!{article.getId()}</td>
+	<td>$!{article.getTitle()}</td>
+	<td>$!{article.getDescription()}</td>
+	<td>$!{article.getType()}</td>
+	<td>$!{article.getgrade()}</td>
+	<td>$!{article.getCreatePerson()}</td>
+	<td>$!{article.getCreateTime()}</td>
+	<td>$!{article.getUpdatePerson()}</td>
+	<td>$!{article.getUpdateTime()}</td>
+	<td>
+		<div class="action-buttons">
+			<a class="blue" title="查看编辑" href="#modal-article"
+				onclick="lookAndEdit('$!{article.getJGUID()}');" data-toggle="modal">
+				<i class="ace-icon fa fa-eye bigger-150"></i>
+			</a> <a class="red" title="删除" href="#"
+				onclick="editarticleStatus('$!{article.getJGUID()}','unused');">
+				<i class="ace-icon fa fa-trash-o bigger-150"></i>
+			</a>
+			<!-- <a class="green" title="还原" href="#"
+								onclick="editarticleStatus('$!{article.getJGUID()}','used');"> <i
+								class="ace-icon fa fa-share bigger-150"></i>
+							</a>  -->
+		</div>
+	</td>
+</tr>
+#end

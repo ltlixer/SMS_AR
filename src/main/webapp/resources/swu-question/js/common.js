@@ -211,13 +211,13 @@ function saveToServer(dataSets) {
 		type : "POST",
 		url : "submitQuestion",
 		dataType : "json",
-		contentType : "application/json",
-		data : JSON.stringify({dataSets: dataSets}),
+		/*contentType : "application/json",*/
+		data :JSON.stringify({"dataSets":dataSets}),
 		success : function(data) {
 			
 		},
-		error : function() {
-			alert("error");
+		error : function(err) {
+			console.log(err);
 		}
 	});
     

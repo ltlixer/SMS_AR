@@ -1,0 +1,28 @@
+#foreach($wordSimilarity in $wordSimilarityList)
+<tr>
+	<td>$!{wordSimilarity.getId()}</td>
+	<td>$!{wordSimilarity.getNewWord()}</td>
+	<td>$!{wordSimilarity.getMatchedWord()}</td>
+	<td>$!{wordSimilarity.getBhSimilarity()}</td>
+	<td>$!{wordSimilarity.getPySimilarity()}</td>
+	<td>$!{wordSimilarity.getBsSimilarity()}</td>
+	<td>$!{wordSimilarity.getJgSimilarity()}</td>
+	<td>$!{wordSimilarity.getScore()}</td>
+	<td>$!{wordSimilarity.getUserName()}</td>
+	<td>
+		<div class="action-buttons">
+			<a class="blue" title="查看编辑" href="#modal-word"
+				onclick="lookAndEdit('$!{word.getJGUID()}');" data-toggle="modal">
+				<i class="ace-icon fa fa-eye bigger-150"></i>
+			</a> <a class="red" title="删除" href="#"
+				onclick="editwordStatus('$!{word.getJGUID()}','unused');"> <i
+				class="ace-icon fa fa-trash-o bigger-150"></i>
+			</a>
+			<!-- <a class="green" title="还原" href="#"
+								onclick="editwordStatus('$!{word.getJGUID()}','used');"> <i
+								class="ace-icon fa fa-share bigger-150"></i>
+							</a>  -->
+		</div>
+	</td>
+</tr>
+#end

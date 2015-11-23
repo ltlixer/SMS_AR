@@ -3,6 +3,7 @@ package com.cisdijob.controller.pages;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
@@ -56,7 +57,11 @@ public class FactualController extends ViewController {
 		List<Article> articleList = articleService.getArticleList();
 		/*List<DropdownList> textDropdownList = dorpdownListService
 				.getDropdownList(DropdownListAPI.textDropdownCode);*/
-		Article article = articleService.getArticleById("1");
+		Article article = new Article();
+		article.setId("1");
+		article.setTitle("小松鼠找花生");
+		article.setContent("大树旁边的地里种了许多花生。花生已经开花了，一朵朵金黄色的小花，在阳光下格外鲜艳。<br/>小松鼠问鼹鼠：“这是什么花呀？”鼹鼠说：“这是花生的花。到了秋天，会结花生，花生可好吃了！”小松鼠很高兴，他想：等花结了果，我就把花生摘下来，留着冬天吃。<br/>" +
+				"小松鼠每天都到地里去，看看结花生了没有。<br/>他等啊，等啊，等到花都落光了，也没看见一个花生。<br/>小松鼠感到奇怪，自言自语地说：“是谁把花生摘走了呢？”");
 		List<Question> questionList = questionService
 				.getQuestionListByArticleId("1");
 		mv.addObject("TEXTLIST", articleList);
@@ -99,13 +104,13 @@ public class FactualController extends ViewController {
 		List<Question> questionList = questionService
 				.getQuestionListByArticleId(articleId);
 		List<Word> wordList = wordService.getWordList();
-
 		List<DistanceAndWord> py_distance = new ArrayList<DistanceAndWord>();
 		List<DistanceAndWord> bh_distance = new ArrayList<DistanceAndWord>();
 		List<DistanceAndWord> bh_rank = new ArrayList<DistanceAndWord>();
 		List<DistanceAndWord> py_rank = new ArrayList<DistanceAndWord>();
 		// List<Word> map_word = new ArrayList<Word>();
 		Map<Integer, List<Word>> map_word = new HashMap<Integer, List<Word>>();
+		List<Question> result_question = new  ArrayList<Question>();
 		for (Question question : questionList) {
 			List<Word> temp = new ArrayList<Word>();
 			List<Word> bs = new ArrayList<Word>();
@@ -139,7 +144,7 @@ public class FactualController extends ViewController {
 			}
 
 			String newWord = question.getNewWord();
-			Word word = wordService.getWord(newWord);
+			Word word = wordService.getWord(newWord.trim());
 			
 			if(word!=null){ 
 						
@@ -190,6 +195,16 @@ public class FactualController extends ViewController {
 			 * 
 			 * map_word.put(questionId, bs);
 			 */
+			if(jg.size()==0){
+				for(int i=0;i<bs.size();i++){
+					if(i<=4){
+						Word word1 =(Word) bs.get(i);
+						temp.add(word1);
+					}
+					
+				}
+				map_word.put(questionId, temp);
+			}
 			if (jg.size() >= 1 && jg.size() <= 4) {
 				map_word.put(questionId, jg);
 			} else if (jg.size() > 4) {
@@ -262,7 +277,14 @@ public class FactualController extends ViewController {
 					}
 
 				}
+				HashSet h  =   new  HashSet(temp);     
+				temp.clear();     
+				temp.addAll(h);     
+			   
 				map_word.put(questionId, temp);
+				if(map_word.size()!=0){
+					result_question.add(question);
+				}
 				System.out.println("tmpe.size--->" + temp.size());
 				System.out.println("py_distance.size--->" + py_distance.size());
 				System.out.println("map_word.size--->" + map_word.size());
@@ -275,7 +297,7 @@ public class FactualController extends ViewController {
 		}
 		mv.addObject("TEXTLIST", articleList);
 		mv.addObject("article", article);
-		mv.addObject("questionList", questionList);
+		mv.addObject("questionList", result_question);
 		mv.addObject("map_word", map_word);
 		return mv;
 	}
@@ -328,11 +350,14 @@ public class FactualController extends ViewController {
 	@ResponseBody
 	public Map<String, Object> factualSubmitQuestion(HttpServletRequest request,
 			HttpServletResponse response,
-			@RequestBody Map<String, Object> params) {
-		String dataArray[] =(String[]) params.get("dataSets");
+			@RequestBody Object params[]) {
+		/*Object dataArray[] =(Object[]) params.get("dataSets");
 		for(int i=0;i<dataArray.length;i++){
-			Object map=dataArray[i];
+			Map<String,Object> map=(Map<String,Object>)dataArray[i];
+			String sentence = map.get("sentence").toString();
+			System.out.println("sentence="+sentence);
 		}
+		*/
 		Map<String,Object> result = new HashMap<String, Object>();
 
 		return result;

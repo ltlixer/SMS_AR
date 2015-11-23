@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.WordDAO">
+	<resultMap type="Word" id="WordList">
+		<result column="id" property="id"/>
+		<result column="word" property="word"/>
+		<result column="bh" property="bh"/>
+		<result column="py" property="py"/>
+		<result column="bs" property="bs"/>
+		<result column="jg" property="jg"/>
+	</resultMap>
+	<insert id="insertWord" parameterType="Word" keyProperty="id">
+		insert
+		into sms_word_t(
+		word,
+		bh,py,bs,jg)
+		values
+		(#{word},
+		#{bh},
+		#{py},
+		#{bs},
+		#{jg})
+	</insert> 
+
+	<select id="getWord" parameterType="String" resultType="Word">
+		select wt.* from sms_word_t wt where wt.word = #{newWord}
+	</select>
+	<select id="getWordList" resultMap="WordList">
+		select wt.* from sms_word_t wt
+	</select>
+	<select id="getWordListByMap" resultMap="WordList" parameterType="Map">
+		select wt.* from sms_word_t wt limit #{startNumber},#{perNumber}
+	</select>
+	<select id="getWordCount" resultType="Integer">
+		select count(*) from sms_word_t
+	</select>
+	<delete id="deletWord" >
+		delete from sms_word_t
+	</delete>
+</mapper>

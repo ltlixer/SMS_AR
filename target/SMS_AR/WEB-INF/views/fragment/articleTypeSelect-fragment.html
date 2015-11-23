@@ -1,0 +1,17 @@
+<label class="control-label">类别</label>
+<select id="FirstClass" onchange="FirstClassSelect()" name="FirstClass">
+	<option value="">--选择类别--</option> #foreach($dropdown in
+	$firstClassList)
+	#if((${dropdown.getCode()})==(${firstSelectCode}))
+	<option value='$!{dropdown.getCode()}' selected="selected">$!{dropdown.getMean()}</option>
+	#else
+	<option value='$!{dropdown.getCode()}'>$!{dropdown.getMean()}</option>
+	#end
+	#end
+</select>
+<label class="control-label col-sm-offset-1">年級</label>
+<select id="SecondClass" name="SecondClass"><option>--选择年級--</option>
+	#foreach($dropdown in $secondClassList)
+	<option value='$!{dropdown.getCode()}'>$!{dropdown.getMean()}</option>
+	#end
+</select>
