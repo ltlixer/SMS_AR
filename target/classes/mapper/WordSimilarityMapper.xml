@@ -11,38 +11,54 @@
 		<result column="bhSimilarity" property="bhSimilarity" />
 		<result column="bsSimilarity" property="bsSimilarity" />
 		<result column="jgSimilarity" property="jgSimilarity" />
-		<result column="score" property="score" />
-		<result column="userId" property="userId" />
-		<result column="userName" property="userName" />
+		<result column="yySimilarity" property="yySimilarity" />
 	</resultMap>
 	<insert id="insertWordSimilarity" parameterType="WordSimilarity"
-		keyProperty="id">
+	 	keyProperty="id">
 		insert
 		into
-		sms_wordSimilarit_t(articleId,newWord,matchedWord,pySimilarity,bhSimilarity,bsSimilarity,jgSimilarity,score,userId)
+		sms_wordsimilarit_t(articleId,newWord,newWordFrequency,matchedWord,matchedWordFrequency,pySimilarity,bhSimilarity,bsSimilarity,jgSimilarity,yySimilarity,yyFeatures,source)
 		values
 		(#{articleId},
 		#{newWord},
+		#{newWordFrequency},
 		#{matchedWord},
+		#{matchedWordFrequency},
 		#{pySimilarity},
 		#{bhSimilarity},
 		#{bsSimilarity},
 		#{jgSimilarity},
-		#{score},
-		#{userId}
+		#{yySimilarity},
+		#{yyFeatures},
+		#{source}
 		)
 	</insert>
+	<update id="updateWordSimilarity" parameterType="WordSimilarity">
+    	update sms_wordsimilarit_t 
+    	set newWordFrequency=#{newWordFrequency},matchedWordFrequency=#{matchedWordFrequency}
+    	where id=#{id}
+	</update> 
+	
+	<select id="getWordSimilarityAll" resultMap="wordSimilarityMap">
+		select * from sms_wordsimilarit_t
+	</select>
 	<select id="getWordSimilarity" resultMap="wordSimilarityMap"
 		parameterType="Map">
-		select wst.*,ut.`name` as userName from
-		sms_wordsimilarit_t
-		wst,sms_user_t ut where ut.userId=wst.userId limit
-		#{startNumber},#{perNumber}
+		select * from sms_wordsimilarit_t limit #{startNumber},#{perNumber}
+	</select>
+	<select id="getCount" resultType="Integer">
+		select count(*) from sms_wordsimilarit_t
 	</select>
 	<select id="getWordSimilarityCount" resultType="Integer"
 		parameterType="Map">
 		select count(*) from sms_wordsimilarit_t
 		wst,sms_user_t
 		ut where ut.userId=wst.userId
+	</select>
+	<select id="getWordSimilarityByArticleId" parameterType="wordSimilarity" resultMap="wordSimilarityMap">
+		select * from sms_wordsimilarit_t where articleId = #{articleId} and source=#{source}
+	</select>
+	<select id="getWordSimilarityByWS" parameterType="WordSimilarity" resultMap="wordSimilarityMap">
+		select * from sms_wordsimilarit_t where articleId = #{articleId} and newWord = #{newWord} and matchedWord=#{matchedWord} and source=#{source}
 	</select>
 </mapper>

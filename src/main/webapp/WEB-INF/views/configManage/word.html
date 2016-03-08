@@ -21,8 +21,10 @@
 	</div>
 
 	<a class=" btn btn-success btn-sm" id="wordLibrary" href="#">导入字库<i
-		class="ace-icon fa fa-arrow-down icon-on-right"></i></a> <a
-		class=" btn btn-danger btn-sm col-sm-offset-1" id="emptyWordLibrary"
+		class="ace-icon fa fa-cloud-upload icon-on-right"></i></a> 
+	<a class=" btn btn-success btn-sm" href="${request.getContextPath()}/configManage/downloadWordLibrary">导出字库<i
+		class="ace-icon fa fa-cloud-download icon-on-right"></i></a> 
+	<a class=" btn btn-danger btn-sm col-sm-offset-1" id="emptyWordLibrary"
 		href="#">清空字库<i class="glyphicon-trash"></i></a>
 
 </div>
@@ -37,11 +39,13 @@
 				<tr>
 					<th width="10%" class="center" id="JNAME">编号</th>
 					<th width="10%" class="center" id="JCREATE_COM">字</th>
-					<th width="10%" class="center" id="JTYPE">笔画</th>
-					<th width="10%" class="center" id="JPROJECT">拼音</th>
-					<th width="6%" class="center" id="JPLACE">部首</th>
-					<th width="6%" class="center" id="JSTATUS">结构</th>
-					<th width="10%" class="center">操作</th>
+					<th width="10%" class="center" id="JTYPE">部首</th>
+					<th width="10%" class="center" id="JPROJECT">结构</th>
+					<th width="10%" class="center" id="JPLACE">笔画</th>
+					<th width="10%" class="center" id="JSTATUS">拼音</th>
+					<th width="10%" class="center" id="JSTATUS">声调</th>
+					<th width="10%" class="center" id="JSTATUS">声旁</th>
+					<th width="10%" class="center" id="JSTATUS">频率</th>
 				</tr>
 
 			</thead>
@@ -51,26 +55,13 @@
 				<tr>
 					<td>$!{word.getId()}</td>
 					<td>$!{word.getWord()}</td>
-					<td>$!{word.getBh()}</td>
-					<td>$!{word.getPy()}</td>
 					<td>$!{word.getBs()}</td>
 					<td>$!{word.getJg()}</td>
-					<td>
-						<div class="action-buttons">
-							<a class="blue" title="查看编辑" href="#modal-word"
-								onclick="lookAndEdit('$!{word.getJGUID()}');"
-								data-toggle="modal"> <i
-								class="ace-icon fa fa-eye bigger-150"></i>
-							</a> <a class="red" title="删除" href="#"
-								onclick="editwordStatus('$!{word.getJGUID()}','unused');"> <i
-								class="ace-icon fa fa-trash-o bigger-150"></i>
-							</a>
-							<!-- <a class="green" title="还原" href="#"
-								onclick="editwordStatus('$!{word.getJGUID()}','used');"> <i
-								class="ace-icon fa fa-share bigger-150"></i>
-							</a>  -->
-						</div>
-					</td>
+					<td>$!{word.getBh()}</td>
+					<td>$!{word.getPy()}</td>
+					<td>$!{word.getSd()}</td>
+					<td>$!{word.getSp()}</td>
+					<td>$!{word.getFrequency()}</td>
 				</tr>
 				#end
 			</tbody>

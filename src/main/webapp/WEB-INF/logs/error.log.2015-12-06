@@ -1,0 +1,9 @@
+2015-12-06 16:33:00 [ http-8080-1:68240 ] - [ ERROR ] ResourceManager : unable to find resource 'homePage/deleteUser.html' in any resource loader.
+2015-12-06 16:40:03 [ http-8080-4:46703 ] - [ ERROR ] ResourceManager : unable to find resource 'homePage/deleteUser.html' in any resource loader.
+2015-12-06 17:29:57 [ http-8080-6:71832 ] - [ ERROR ] ResourceManager : unable to find resource 'homePage/deleteUser.html' in any resource loader.
+2015-12-06 18:17:23 [ http-8080-3:13661 ] - [ ERROR ] ResourceManager : unable to find resource 'homePage/deleteUser.html' in any resource loader.
+2015-12-06 18:27:35 [ http-8080-1:26640 ] - [ ERROR ] ResourceManager : unable to find resource 'homePage/deleteUser.html' in any resource loader.
+2015-12-06 18:35:09 [ http-8080-6:161307 ] - [ ERROR ] ResourceManager : unable to find resource 'homePage/deleteUser.html' in any resource loader.
+2015-12-06 18:37:52 [ http-8080-5:23521 ] - [ ERROR ] ResourceManager : unable to find resource 'homePage/deleteUser.html' in any resource loader.
+2015-12-06 19:21:37 [ http-8080-5:13647 ] - [ ERROR ] ResourceManager : unable to find resource 'configManage/deleteArticle.html' in any resource loader.
+2015-12-06 19:24:06 [ http-8080-6:10758 ] - [ ERROR ] ResourceManager : unable to find resource 'configManage/deleteArticle.html' in any resource loader.

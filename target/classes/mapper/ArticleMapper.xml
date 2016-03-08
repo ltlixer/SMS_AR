@@ -40,7 +40,7 @@
 	<select id="articleAllCounts" resultType="Integer">
 		select count(*) from sms_article_t;
 	</select>
-	<select id="getArticleListByMap" resultMap="ArticleList">
+	<select id="getArticleListByMap" resultMap="ArticleList" parameterType="Map">
 		SELECT
 		`at`.id,`at`.title,at.description,vt.mean as type,vtt.mean as
 		type2,`at`.content,`at`.createPerson,`at`.createTime,`at`.updatePerson,`at`.updateTime
@@ -50,5 +50,11 @@
 		vt.`code`=vtt.typeCode and
 		vt.`code`=`at`.type and
 		vtt.`code`=`at`.type2
+		limit #{startNumber},#{perNumber}
 	</select>
+	
+	
+	<delete id="deleteArticle" parameterType="String">
+		delete from sms_article_t where articleId=#{articleId}
+	</delete>
 </mapper>

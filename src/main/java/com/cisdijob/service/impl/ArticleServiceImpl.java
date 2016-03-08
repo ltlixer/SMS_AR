@@ -39,5 +39,9 @@ public class ArticleServiceImpl implements ArticleService {
 		// TODO Auto-generated method stub
 		return articleDAO.articleAllCounts();
 	}
+	public void deleteArticle(String articleId) {
+		// TODO Auto-generated method stub
+		articleDAO.deleteArticle(articleId);
+	}
 
 }

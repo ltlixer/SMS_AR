@@ -7,4 +7,5 @@ import com.cisdijob.model.entity.Question;
 public interface QuestionDAO {
 	public List<Question> getQuestionListByArticleId(String articleId);
 	public void insertQuestion(Question question);
+	public List<Question> getQuestion(Question question);
 }

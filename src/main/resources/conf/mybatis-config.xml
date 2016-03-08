@@ -10,7 +10,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
          <typeAlias alias="Article" type="com.cisdijob.model.entity.Article"/> 
          <typeAlias alias="Question" type="com.cisdijob.model.entity.Question"/> 
          <typeAlias alias="Word" type="com.cisdijob.model.entity.Word"/> 
-         <typeAlias alias="WordSimilarity" type="com.cisdijob.model.entity.WordSimilarity"/> 
+         <typeAlias alias="WordSimilarity" type="com.cisdijob.model.entity.WordSimilarity"/>
+         <typeAlias alias="WordScore" type="com.cisdijob.model.entity.WordScore"/> 
+    	 <typeAlias alias="ScoreCount" type="com.cisdijob.model.entity.ScoreCount"/>
+    	 <typeAlias alias="Questionary" type="com.cisdijob.model.entity.Questionary"/>
+    	 <typeAlias alias="Frequency" type="com.cisdijob.model.entity.Frequency"/>
     </typeAliases>
     <!-- 映射map -->
     <mappers>

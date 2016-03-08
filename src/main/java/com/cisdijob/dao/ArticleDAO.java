@@ -12,4 +12,6 @@ public interface ArticleDAO {
 	public int articleCount(Map<String,Object> map);
 	public List<Article> getArticleListByMap(Map<String,Object> map);
 	public int articleAllCounts();
+	
+	public void deleteArticle(String articleId);
 }

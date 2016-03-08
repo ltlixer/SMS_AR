@@ -12,20 +12,16 @@
 		<result column="jg" property="jg"/>
 	</resultMap>
 	<insert id="insertWord" parameterType="Word" keyProperty="id">
-		insert
-		into sms_word_t(
-		word,
-		bh,py,bs,jg)
-		values
-		(#{word},
-		#{bh},
-		#{py},
-		#{bs},
-		#{jg})
+		insert into sms_word_t(word,bh,py,bs,jg,sd,sp,frequency)
+		values(#{word},#{bh},#{py},#{bs},#{jg},#{sd},#{sp},#{frequency})
 	</insert> 
-
+	<update id="updateWord" parameterType="Word">
+    	update sms_word_t 
+    	set sd=#{sd}
+    	where id=#{id}
+	</update> 
 	<select id="getWord" parameterType="String" resultType="Word">
-		select wt.* from sms_word_t wt where wt.word = #{newWord}
+		select * from sms_word_t where word = #{newWord}
 	</select>
 	<select id="getWordList" resultMap="WordList">
 		select wt.* from sms_word_t wt
@@ -39,4 +35,8 @@
 	<delete id="deletWord" >
 		delete from sms_word_t
 	</delete>
+	
+	<select id="getWordListByFrequency" resultMap="WordList" parameterType="String">
+		select * from sms_word_t where frequency=#{grade}
+	</select>
 </mapper>

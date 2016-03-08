@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.WordScoreDAO">
+	<resultMap type="WordScore" id="wordScoreMap">
+		<result column="id" property="id" />
+		<result column="userId" property="userId" />
+		<result column="wordSimilaritId" property="wordSimilaritId" />
+		<result column="articleId" property="articleId" />
+		<result column="newWord" property="newWord" />
+		<result column="matchedWord" property="matchedWord" />
+		<result column="score" property="score" />
+	</resultMap>
+	
+	<resultMap type="ScoreCount" id="scoreCountMap">
+		<result column="qid" property="qid" />
+		<result column="articleId" property="articleId" />
+		<result column="newWord" property="newWord" />
+		<result column="matchedWord" property="matchedWord" />
+		<result column="score_user1" property="score_user1" />
+		<result column="pySimilarity" property="pySimilarity" />
+		<result column="bhSimilarity" property="bhSimilarity" />
+		<result column="bsSimilarity" property="bsSimilarity" />
+		<result column="jgSimilarity" property="jgSimilarity" />
+		<result column="yySimilarity" property="yySimilarity" />
+	</resultMap>
+	
+	<insert id="insertWordScore" parameterType="WordScore" keyProperty="id">
+		insert
+		into
+		sms_wordscore_t(userId,wordSimilaritId,score)
+		values
+		(#{userId},
+		#{wordSimilaritId},
+		#{score}
+		)
+	</insert>
+	
+	<select id="getWordScoreList" resultMap="wordScoreMap"
+		parameterType="Map">
+		select * from sms_wordscore_t
+	</select>
+	<select id="getWordScore" resultMap="wordScoreMap"
+		parameterType="Map">
+		select wst.*,wstt.`articleId` as articleId,wstt.`newWord` as newWord,wstt.`matchedWord` as matchedWord 
+		from sms_wordscore_t wst,sms_wordsimilarit_t wstt 
+		where wst.wordSimilaritId=wstt.id 
+		limit #{startNumber},#{perNumber}
+	</select>
+	<select id="getCount" resultType="Integer">
+		select count(*) from sms_wordscore_t
+	</select>
+	
+	
+	<!-- 获取打分统计，用于计算特征 -->
+	<select id="getUserScore" resultMap="scoreCountMap"
+		parameterType="String">
+		select wstt.*,wstt.`id` as qid,wst.`score` as score_user1
+		from sms_wordscore_t wst,sms_wordsimilarit_t wstt
+		where wst.userId=#{user} and wst.wordSimilaritId=wstt.id and wstt.source='rule'
+	</select>
+	<select id="getRandomUserScore" resultMap="scoreCountMap"
+		parameterType="String">
+		select wstt.*,wstt.`id` as qid,wst.`score` as score_user1
+		from sms_wordscore_t wst,sms_wordsimilarit_t wstt
+		where wst.userId=#{user} and wst.wordSimilaritId=wstt.id and wstt.source='Random'
+	</select>
+	<select id="getUserScoreByArticle" resultMap="scoreCountMap"
+		parameterType="String">
+		select wstt.*,wstt.`id` as qid,wst.`score` as score_user1
+		from sms_wordscore_t wst,sms_wordsimilarit_t wstt
+		where wstt.articleId=#{articleId} and wst.wordSimilaritId=wstt.id
+	</select>
+	<select id="getUserScoreBySC" resultMap="scoreCountMap"
+		parameterType="ScoreCount">
+		select wstt.*,wstt.`id` as qid,wst.`score` as score_user1
+		from sms_wordscore_t wst,sms_wordsimilarit_t wstt
+		where wst.userId=#{userId} and wstt.articleId=#{articleId} and wst.wordSimilaritId=wstt.id
+	</select>
+	
+	<select id="getWordScoreByWS" resultMap="wordScoreMap"
+		parameterType="WordScore">
+		select wst.*,wstt.`articleId` as articleId,wstt.`newWord` as newWord,wstt.`matchedWord` as matchedWord 
+		from sms_wordscore_t wst,sms_wordsimilarit_t wstt 
+		where wst.wordSimilaritId=wstt.id and wst.userId=#{userId} and wst.wordSimilaritId=#{wordSimilaritId}
+	</select>
+	
+	<update id="updateWordScore" parameterType="WordScore">
+    	update sms_wordscore_t 
+    	set score=#{score}
+    	where userId=#{userId} and wordSimilaritId=#{wordSimilaritId}
+	</update> 
+	
+</mapper>

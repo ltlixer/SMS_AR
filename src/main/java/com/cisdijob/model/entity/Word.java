@@ -7,6 +7,29 @@ public class Word {
 	private String py;
 	private String bs;
 	private String jg;
+	private String frequency;
+	private String sd;
+	private String sp;
+	
+
+	public String getSd() {
+		return sd;
+	}
+	public void setSd(String sd) {
+		this.sd = sd;
+	}
+	public String getSp() {
+		return sp;
+	}
+	public void setSp(String sp) {
+		this.sp = sp;
+	}
+	public String getFrequency() {
+		return frequency;
+	}
+	public void setFrequency(String frequency) {
+		this.frequency = frequency;
+	}
 	public int getId() {
 		return id;
 	}

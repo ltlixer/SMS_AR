@@ -25,5 +25,10 @@
 		sms_question_t(id,type,articleId,candidate,question,newWord,createPerson,createTime)
 		values(#{id},#{type},#{articleId},#{candidate},#{question},#{newWord},#{createPerson},#{createTime})
 	</insert>
+	<select id="getQuestion" parameterType="Question"
+		resultMap="getQuestionList">
+		select qt.* from sms_article_t at,sms_question_t qt WHERE
+		`at`.id=qt.articleId and qt.articleId=#{articleId} and qt.newWord=#{newWord}
+	</select>
 
 </mapper>

@@ -19,6 +19,10 @@ public class WordServiceImpl implements WordService{
 		// TODO Auto-generated method stub
 		wordDAO.insertWord(word);
 	}
+	public void updateWord(Word word) {
+		// TODO Auto-generated method stub
+		wordDAO.updateWord(word);
+	}
 	public Word getWord(String newWord) {
 		// TODO Auto-generated method stub
 		return wordDAO.getWord(newWord);

@@ -12,4 +12,9 @@ public interface ArticleService {
 	public int articleCount(Map<String,Object> map);
 	public List<Article> getArticleListByMap(Map<String,Object> map);
 	public int articleAllCounts();
+	/**
+	 * 根据课文id删除课文
+	 * @param articleId 课文id
+	 */
+	public void deleteArticle(String articleId);
 }

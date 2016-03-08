@@ -1,3 +1,4 @@
+
 function selectArticle(){
 	var articleId = $("#articleTitle option:selected").val();
 	if(articleId!=null && articleId!=""){

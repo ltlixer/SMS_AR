@@ -20,7 +20,8 @@ public class QuestionServiceImpl implements QuestionService{
 	}
 	public void insertQuestion(Question question) {
 		// TODO Auto-generated method stub
-		questionDAO.insertQuestion(question);
+		if(questionDAO.getQuestion(question).isEmpty())
+			questionDAO.insertQuestion(question);
 	}
 
 }

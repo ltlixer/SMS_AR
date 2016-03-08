@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.FrequencyDAO">
+	<resultMap type="Frequency" id="FrequencyList">
+		<result column="frequencyId" property="frequencyId"/>
+		<result column="word" property="word"/>
+		<result column="grade" property="grade"/>
+	</resultMap>
+	
+	<select id="getFrequencyByWord" resultMap="FrequencyList" parameterType="String">
+		select * from sms_frequency_t where word=#{word}
+	</select>
+	<select id="getFrequencyByGrade" resultMap="FrequencyList" parameterType="String">
+		select * from sms_frequency_t where grade=#{grade}
+	</select>
+	
+</mapper>

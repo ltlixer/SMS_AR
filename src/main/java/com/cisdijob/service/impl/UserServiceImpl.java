@@ -53,5 +53,27 @@ public class UserServiceImpl implements UserService{
 		// TODO Auto-generated method stub
 		return userDAO.getPersonList(permission);
 	}
+	
+	public List<User> getUserMap(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return userDAO.getUserMap(map);
+	}
+	public int getCount() {
+		// TODO Auto-generated method stub
+		return userDAO.getCount();
+	}
+	
+	public void addUser(User user) {
+		// TODO Auto-generated method stub
+		userDAO.addUser(user);
+	}
+	public void deleteUser(String userId) {
+		// TODO Auto-generated method stub
+		userDAO.deleteUser(userId);
+	}
+	public void updateUser(User user) {
+		// TODO Auto-generated method stub
+		userDAO.updateUser(user);
+	}
 
 }

@@ -2,24 +2,12 @@
 <tr>
 	<td>$!{word.getId()}</td>
 	<td>$!{word.getWord()}</td>
-	<td>$!{word.getBh()}</td>
-	<td>$!{word.getPy()}</td>
 	<td>$!{word.getBs()}</td>
 	<td>$!{word.getJg()}</td>
-	<td>
-		<div class="action-buttons">
-			<a class="blue" title="查看编辑" href="#modal-word"
-				onclick="lookAndEdit('$!{word.getJGUID()}');" data-toggle="modal">
-				<i class="ace-icon fa fa-eye bigger-150"></i>
-			</a> <a class="red" title="删除" href="#"
-				onclick="editwordStatus('$!{word.getJGUID()}','unused');"> <i
-				class="ace-icon fa fa-trash-o bigger-150"></i>
-			</a>
-			<!-- <a class="green" title="还原" href="#"
-								onclick="editwordStatus('$!{word.getJGUID()}','used');"> <i
-								class="ace-icon fa fa-share bigger-150"></i>
-							</a>  -->
-		</div>
-	</td>
+	<td>$!{word.getBh()}</td>
+	<td>$!{word.getPy()}</td>
+	<td>$!{word.getSd()}</td>
+	<td>$!{word.getSp()}</td>
+	<td>$!{word.getFrequency()}</td>
 </tr>
 #end

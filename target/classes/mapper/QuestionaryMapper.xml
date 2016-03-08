@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cisdijob.dao.QuestionaryDAO">
+	<resultMap type="Questionary" id="getQuestionaryList">
+		<result column="articleId" property="articleId" />
+		<result column="userId" property="userId" />
+		<result column="startTime" property="startTime" />
+		<result column="endTime" property="startTime" />
+	</resultMap>
+	
+	<select id="getQuestionarysByUserId" parameterType="String"
+		resultMap="getQuestionaryList">
+		SELECT * FROM sms_questionary_t WHERE userId=#{userId}
+	</select>
+	<select id="getQuestionarysByQuestionary" parameterType="Questionary"
+		resultType="Questionary">
+		SELECT * FROM sms_questionary_t WHERE articleId=#{articleId} and userId=#{userId}
+	</select>
+	
+	<insert id="insertQuestionary" parameterType="Questionary">
+		insert into sms_questionary_t(articleId,userId,startTime,endTime)
+		values(#{articleId},#{userId},#{startTime},#{endTime})
+	</insert>
+	<delete id="deleteQuestionary" parameterType="Questionary">
+		delete from sms_questionary_t where articleId=#{articleId} and userId=#{userId}
+	</delete>
+
+</mapper>

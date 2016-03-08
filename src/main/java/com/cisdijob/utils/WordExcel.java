@@ -2,7 +2,6 @@ package com.cisdijob.utils;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
-import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,13 +9,11 @@ import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Workbook;
 
 import com.cisdijob.model.entity.Word;
-import com.cisdijob.service.impl.WordServiceImpl;
-import com.cisdijob.service.pages.WordService;
 
 public class WordExcel {
+	
 	public List<Word> readWrodExcel(String file){
 		InputStream is = null;
 		List<Word> wordList = new ArrayList<Word>();
@@ -30,15 +27,21 @@ public class WordExcel {
 				Word word = new Word();
 				HSSFRow hssfRow = hssfSheet.getRow(i);
 				HSSFCell word1 = hssfRow.getCell(1);
-				HSSFCell py = hssfRow.getCell(2);
-				HSSFCell bs = hssfRow.getCell(5);
-				HSSFCell bh = hssfRow.getCell(6);
-				HSSFCell jg = hssfRow.getCell(7);
+				HSSFCell bs = hssfRow.getCell(2);
+				HSSFCell jg = hssfRow.getCell(3);
+				HSSFCell bh = hssfRow.getCell(4);
+				HSSFCell py = hssfRow.getCell(5);
+				HSSFCell sd = hssfRow.getCell(6);
+				HSSFCell sp = hssfRow.getCell(7);
+				HSSFCell frequency = hssfRow.getCell(8);
 				word.setWord(getValue(word1));
 				word.setPy(getValue(py));
 				word.setBs(getValue(bs));
 				word.setBh(getValue(bh));
 				word.setJg(getValue(jg));
+				word.setSd(getValue(sd));
+				word.setSp(getValue(sp));
+				word.setFrequency(getValue(frequency));
 				wordList.add(word);
 			}
 		} catch (Exception e) {

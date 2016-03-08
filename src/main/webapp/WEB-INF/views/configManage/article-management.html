@@ -88,12 +88,13 @@
 					<td>$!{article.getUpdateTime()}</td>
 					<td>
 						<div class="action-buttons">
-							<a class="blue" title="查看编辑" href="#modal-article"
+							<!-- <a class="blue" title="查看编辑" href="#modal-article"
 								onclick="lookAndEdit('$!{article.getJGUID()}');"
 								data-toggle="modal"> <i
 								class="ace-icon fa fa-eye bigger-150"></i>
-							</a> <a class="red" title="删除" href="#"
-								onclick="editarticleStatus('$!{article.getJGUID()}','unused');">
+							</a> -->
+							<a class="red" title="删除" href="#"
+								onclick="deleteArticle('$!{article.getId()}');">
 								<i class="ace-icon fa fa-trash-o bigger-150"></i>
 							</a>
 							<!-- <a class="green" title="还原" href="#"
@@ -187,5 +188,23 @@
 		//
 		});
 	});
+	function deleteArticle(id){
+		$.ajax({
+			type : "POST",
+			url : "deleteArticle",
+			dataType : "json",
+			contentType : "application/json",
+			data : JSON.stringify({
+				"articleId" : id		
+			}),
+			success : function(data) {
+				alert(data.msg);
+				location.reload();
+			},
+			error : function() {
+				alert("连接服务器出错！");
+			}
+		});
+	}
 </script>
 

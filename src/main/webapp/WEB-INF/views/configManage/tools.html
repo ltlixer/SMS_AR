@@ -1,0 +1,56 @@
+<div class="breadcrumbs header" id="breadcrumbs">
+	<script type="text/javascript">
+		try {
+			ace.settings.check('breadcrumbs', 'fixed')
+		} catch (e) {
+		}
+	</script>
+
+	<ul class="breadcrumb col-sm-3">
+		<li><i class="ace-icon fa fa-life-saver home-icon"></i> <a
+			href="#">配置管理</a></li>
+		<li class="active">小工具</li>
+	</ul>
+	
+
+</div>
+<!-- heade/ -->
+<div class="table-content">
+	<div class="well">
+		<h4 class="green smaller lighter">文件转换</h4>
+		将名称为“打分模型SMS_AR.xls”的excel文件转换成“打分模型SMS_AR.txt”文件
+		<div style="padding:5px;"> </div>
+		<div class="col-sm-3" style="margin-top: 6px">
+		
+			<form
+				action="${request.getContextPath()}/configManage/transfer"
+				enctype="multipart/form-data" method="post" name="form" id="upload">
+				<input type="file" id="id-input-file-2" class="col-xs-3" name="file"/>
+				<input type="submit" value="提交" class="hidden">
+			</form>
+		</div>
+	
+		<a class=" btn btn-success col-sm" id="transfer" href="#">转换<i
+			class="ace-icon fa fa-arrow-down icon-on-right"></i></a> 
+	</div>
+ </div>
+
+<script src="${request.getContextPath()}/resources/js/transfer.js"
+	type="text/javascript"></script>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$('#id-input-file-1 , #id-input-file-2').ace_file_input({
+			no_file:'No File ...',
+			btn_choose:'选择文件',
+			btn_change:'Change',
+			droppable:false,
+			onchange:null,
+			thumbnail:false //| true | large
+			//whitelist:'gif|png|jpg|jpeg'
+			//blacklist:'exe|php'
+			//onchange:''
+			//
+		});
+	});
+</script>
+

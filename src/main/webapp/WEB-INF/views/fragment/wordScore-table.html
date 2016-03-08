@@ -1,0 +1,11 @@
+#foreach($wordScore in $wordScoreList)
+<tr>
+	<td>$!{wordScore.getId()}</td>
+	<td>$!{wordScore.getUserId()}</td>
+	<td>$!{wordScore.getWordSimilaritId()}</td>
+	<td>$!{wordScore.getArticleId()}</td>
+	<td>$!{wordScore.getNewWord()}</td>
+	<td>$!{wordScore.getMatchedWord()}</td>
+	<td>$!{wordScore.getScore()}</td>
+</tr>
+#end
